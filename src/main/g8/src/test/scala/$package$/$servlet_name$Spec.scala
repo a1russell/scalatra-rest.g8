@@ -1,16 +1,17 @@
 package $package$
 
-import org.scalatra.test.specs2._
+import org.scalatra.test.scalatest._
+import org.scalatest.FunSpec
 
-// For more on Specs2, see http://etorreborre.github.com/specs2/guide/org.specs2.guide.QuickStart.html
-class $servlet_name$Spec extends ScalatraSpec { def is =
-  "GET / on $servlet_name$"                     ^
-    "should return status 200"                  ! root200^
-                                                end
-
+// For more on ScalaTest, see http://www.scalatest.org/quick_start
+class $servlet_name$Spec extends ScalatraSuite with FunSpec {
   addServlet(classOf[$servlet_name$], "/*")
 
-  def root200 = get("/") {
-    status must_== 200
+  describe("GET / on $servlet_name$") {
+    it("should return status 200") {
+      get("/") {
+        status should be (200)
+      }
+    }
   }
 }
